@@ -3,29 +3,29 @@
 class social_digg extends jk_wp_social_sharing
 {
 
-    public static function get_digg_share_link($post_title, $post_url, $post_thumb, $post_excerpt)
+    public function get_digg_share_link($post_title, $post_url, $post_thumb, $post_excerpt)
     {
 
         return esc_url('https://digg.com/submit?url=' . $post_url);
 
     }
 
-    public static function the_digg_share_link_render($post_id, $type = 'default')
+    public function the_digg_share_link_render($post_id, $type = 'default')
     {
 
-        $title = self::get_social_sharing_title($post_id);
+        $title = $this->get_social_sharing_title($post_id);
 
-        $url = self::get_social_sharing_url($post_id);
+        $url = $this->get_social_sharing_url($post_id);
 
-        $excerpt = self::get_social_sharing_excerpt($post_id);
+        $excerpt = $this->get_social_sharing_excerpt($post_id);
 
-        $thumbnail = self::get_social_sharing_thumbnail($post_id);
+        $thumbnail = $this->get_social_sharing_thumbnail($post_id);
 
         if ($type === 'default'):
 
             ?>
 
-            <a href="<?php echo esc_url(self::get_digg_share_link($title, $url, $thumbnail, $excerpt)); ?>"
+            <a href="<?php echo esc_url($this->get_digg_share_link($title, $url, $thumbnail, $excerpt)); ?>"
                class="share-link share-link-default share-link-digg" style="background-color: #1B1A19;">
 
                 <i class="fab fa-digg"></i>
@@ -40,7 +40,7 @@ class social_digg extends jk_wp_social_sharing
 
             ?>
 
-            <a href="<?php echo esc_url(self::get_digg_share_link($title, $url, $thumbnail, $excerpt)); ?>"
+            <a href="<?php echo esc_url($this->get_digg_share_link($title, $url, $thumbnail, $excerpt)); ?>"
                class="share-link share-link-simple share-link-digg">
 
                 <?php echo esc_html('Digg'); ?>
